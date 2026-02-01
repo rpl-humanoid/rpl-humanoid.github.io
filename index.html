@@ -81,7 +81,7 @@
       <div class="container is-size-5">
         <div class="navbar-menu">
           <div class="navbar-end">
-            <a class="navbar-item pl-4 pr-4" href="./static/falcon.pdf">  <!-- TODO:update -->
+            <a class="navbar-item pl-4 pr-4" href="./static/rpl.pdf">  <!-- TODO:update -->
               <span class="icon" style="margin-right:5px;">
                 <img src="./static/images/pdf.svg" alt="PDF" />
               </span>
@@ -139,7 +139,7 @@
         <div class="publication-links">
           <!-- PDF Link. -->
           <span class="link-block">
-            <a href="./static/falcon.pdf" class="external-link button is-normal is-rounded is-dark">
+            <a href="./static/rpl.pdf" class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
                 <img src="./static/images/pdf.svg" alt="PDF" />
               </span>
@@ -249,7 +249,7 @@
               <!-- PDF Link. -->
               <span class="link-block">
                 <!-- TODO:update -->
-                <a href="./static/falcon.pdf"
+                <a href="./static/rpl.pdf"
                    class="external-link button is-normal is-rounded is-dark" target="_blank">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -366,12 +366,31 @@
   </div>
 </section>
 
+<section class="section" style="background-color: #f5f5f5; padding: 3rem 1.5rem;">
+  <div class="container">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column" style="width: 60%; max-width: 75%;">
+        <h2 class="title is-2">Abstract</h2>
+        <div class="content has-text-justified" style="font-size: 0.9rem;">
+          <p>Humanoid perceptive locomotion has made significant progress and shows great promise, yet achieving robust multi-directional locomotion on complex terrains remains unexplored. To tackle this challenge, we propose <strong>RPL</strong>, a two-stage training framework that enables multi-directional locomotion on challenging terrains, and remains robust under payload transportation. <strong>RPL</strong> first trains terrain-specific expert policies with privileged height map observations to master decoupled locomotion and manipulation skills across different terrains, and then distills them into a transformer policy that leverages multiple depth cameras to cover a wide range of views. During distillation, we introduce two techniques to robustify multi-directional locomotion, depth feature scaling based on velocity commands and random side masking, which are critical for asymmetric depth observations and unseen widths of terrains. For scalable depth distillation, we develop an efficient multi-depth system that ray-casts against both dynamic robot meshes and static terrain meshes in massively parallel environments, achieving a 5× speedup over the depth rendering pipelines in existing simulators while modeling realistic sensor latency, noise, and dropout. Extensive real-world experiments demonstrate robust multi-directional locomotion with payloads (2kg) across challenging terrains, including 20° slopes, staircases with different step lengths (22 cm, 25 cm, 30 cm), and 25 cm×25 cm stepping stones separated by 60 cm gaps.</p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifth has-text-centered">
+        <img src="./static/images/method.png" alt="" style="width: 75%;" />
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-full-width">
         <div style="max-width: 1000px; margin: 0 auto;">
-          <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">
+          <h2 class="title is-2" style="text-align: center; padding-bottom: 10px; font-size: 2rem">
             Ablation on Multi-Depth Distillation
           </h2>
           <p class="content" style="padding-bottom: 0px; color: #4a4a4a; font-size: 0.95rem;">
@@ -405,23 +424,206 @@
   </div>
 </section>
 
+<div style="max-width: 1000px; margin: 0 auto;">
+  <hr style="border: none; border-top: 1px solid #dbdbdb; margin: 0;">
+</div>
 
 <section class="section">
   <div class="container">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-2">Abstract</h2>
-        <div class="content has-text-justified" style="font-size: 0.9rem;">
-          <p>Humanoid perceptive locomotion has made significant progress and shows great promise, yet achieving robust multi-directional locomotion on complex terrains remains unexplored. To tackle this challenge, we propose <strong>RPL</strong>, a two-stage training framework that enables multi-directional locomotion on challenging terrains, and remains robust under payload transportation. <strong>RPL</strong> first trains terrain-specific expert policies with privileged height map observations to master decoupled locomotion and manipulation skills across different terrains, and then distills them into a transformer policy that leverages multiple depth cameras to cover a wide range of views. During distillation, we introduce two techniques to robustify multi-directional locomotion, depth feature scaling based on velocity commands and random side masking, which are critical for asymmetric depth observations and unseen widths of terrains. For scalable depth distillation, we develop an efficient multi-depth system that ray-casts against both dynamic robot meshes and static terrain meshes in massively parallel environments, achieving a 5× speedup over the depth rendering pipelines in existing simulators while modeling realistic sensor latency, noise, and dropout. Extensive real-world experiments demonstrate robust multi-directional locomotion with payloads (2kg) across challenging terrains, including 20° slopes, staircases with different step lengths (22 cm, 25 cm, 30 cm), and 25 cm×25 cm stepping stones separated by 60 cm gaps.</p>
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div style="max-width: 1000px; margin: 0 auto;">
+          <h2 class="title is-2" style="text-align: center; padding-bottom: 10px; font-size: 2rem">
+            Scalable Multi-Depth Rendering Performance
+          </h2>
+          <p class="content" style="padding-bottom: 20px; color: #4a4a4a; font-size: 0.95rem;">
+            We benchmark the capability and speed of different depth rendering pipelines in <strong>RPL</strong> and existing simulators. 
+            We evaluate depth rendering performance in a locomotion-only task setting with N<sub>cam</sub>=1, 2, 4 depth cameras over all terrain types (slopes, stairs, and stepping stones), 
+            focusing on VRAM usage and iteration time. The depth resolution is 240×135, evaluated on a single NVIDIA L40S GPU. 
+            The baselines include: (1) IsaacGym PhysX; (2) IsaacSim RTX (TiledCamera); (3) IsaacSim Warp (RayCasterCamera).
+            The multi-depth rendering pipeline in <strong>RPL</strong> allows ray-casting against both dynamic and static meshes, achieving a <strong style="color: #2563eb;">5× speedup</strong> compared to the most efficient baseline (IsaacSim Warp), which does not support dynamic mesh ray-casting.
+          </p>
+          
+          <!-- Table: Depth Rendering Performance -->
+          <div class="table-container" style="overflow-x: auto;">
+            <table class="table is-bordered is-striped is-hoverable" style="width: 100%; font-size: 0.9rem;">
+              <thead>
+                <tr style="background-color: #f5f5f5;">
+                  <th rowspan="2" style="text-align: center; vertical-align: middle;">Method</th>
+                  <th rowspan="2" style="text-align: center; vertical-align: middle;">Dyn. Mesh</th>
+                  <th rowspan="2" style="text-align: center; vertical-align: middle;">Num. Envs</th>
+                  <th colspan="2" style="text-align: center;">N<sub>cam</sub>=1</th>
+                  <th colspan="2" style="text-align: center;">N<sub>cam</sub>=2</th>
+                  <th colspan="2" style="text-align: center;">N<sub>cam</sub>=4</th>
+                </tr>
+                <tr style="background-color: #f5f5f5;">
+                  <th style="text-align: center;">VRAM↓</th>
+                  <th style="text-align: center;">Iter. (s)↓</th>
+                  <th style="text-align: center;">VRAM↓</th>
+                  <th style="text-align: center;">Iter. (s)↓</th>
+                  <th style="text-align: center;">VRAM↓</th>
+                  <th style="text-align: center;">Iter. (s)↓</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: left;">IsaacGym PhysX</td>
+                  <td style="text-align: center;">✓</td>
+                  <td style="text-align: center;">1024</td>
+                  <td style="text-align: center;">16.8</td>
+                  <td style="text-align: center;">35.6<span style="font-size: 0.8em; color: #666;">±4.1</span></td>
+                  <td style="text-align: center;">22.5</td>
+                  <td style="text-align: center;">70.1<span style="font-size: 0.8em; color: #666;">±8.3</span></td>
+                  <td style="text-align: center;">33.9</td>
+                  <td style="text-align: center;">146.5<span style="font-size: 0.8em; color: #666;">±16.1</span></td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">IsaacSim RTX</td>
+                  <td style="text-align: center;">✓</td>
+                  <td style="text-align: center;">1024</td>
+                  <td style="text-align: center;">17.5</td>
+                  <td style="text-align: center;">5.3<span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                  <td style="text-align: center;">23.2</td>
+                  <td style="text-align: center;">7.6<span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                  <td style="text-align: center;">34.4</td>
+                  <td style="text-align: center;">12.6<span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">IsaacSim Warp</td>
+                  <td style="text-align: center;">✗</td>
+                  <td style="text-align: center;">1024</td>
+                  <td style="text-align: center;"><strong>12.8</strong></td>
+                  <td style="text-align: center;">3.5<span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                  <td style="text-align: center;">15.1</td>
+                  <td style="text-align: center;">5.9<span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                  <td style="text-align: center;">20.7</td>
+                  <td style="text-align: center;">9.1<span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                </tr>
+                <tr style="background-color: #e8f4e8;">
+                  <td style="text-align: left;"><strong>RPL (Ours)</strong></td>
+                  <td style="text-align: center;"><strong>✓</strong></td>
+                  <td style="text-align: center;">1024</td>
+                  <td style="text-align: center;">13.3</td>
+                  <td style="text-align: center;"><strong>1.3</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>14.6</strong></td>
+                  <td style="text-align: center;"><strong>1.5</strong><span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                  <td style="text-align: center;"><strong>17.3</strong></td>
+                  <td style="text-align: center;"><strong>1.9</strong><span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="content" style="text-align: center; color: #888; font-size: 0.8rem; margin-top: 10px;">
+            Depth rendering scalability with a fixed number of parallel environments across different numbers of depth cameras.
+          </p>
         </div>
       </div>
     </div>
   </div>
-  <br>
-  <div class="columns is-centered">
-    <div class="column is-four-fifth has-text-centered">
-      <img src="./static/images/FALCON-Pipeline.png" alt="" style="width: 60%;" />
+</section>
+
+<div style="max-width: 1000px; margin: 0 auto;">
+  <hr style="border: none; border-top: 1px solid #dbdbdb; margin: 0;">
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div style="max-width: 1000px; margin: 0 auto;">
+          <h2 class="title is-2" style="text-align: center; padding-bottom: 10px; font-size: 2rem">
+            Multi-Camera Configuration for Multi-Directional Locomotion
+          </h2>
+          <p class="content" style="padding-bottom: 20px; color: #4a4a4a; font-size: 0.95rem;">
+            To demonstrate the necessity of multiple cameras for multi-directional locomotion, we compare the achieved terrain levels for N<sub>cam</sub>=1, 2, 4 under bidirectional and omnidirectional locomotion. 
+            Bidirectional locomotion supports forward and backward walking, whereas omni-directional locomotion enables movement in all planar directions (forward, backward, left, and right). 
+            When N<sub>cam</sub>=1, a downward-facing camera is used to maximize terrain coverage. 
+            As the number of depth cameras decreases, performance degrades especially on <strong>stepping stones</strong>, where sparse footholds with gaps of up to 70 cm demand a wide field of view aligned with the walking direction. 
+            These results indicate that reliable bidirectional and omnidirectional locomotion benefits from having <strong style="color: #2563eb;">at least two depth cameras</strong> covering each potential walking direction to ensure sufficient terrain visibility.
+          </p>
+          
+          <!-- Table: Terrain Levels for Different Camera Configurations -->
+          <div class="table-container" style="overflow-x: auto;">
+            <table class="table is-bordered is-striped is-hoverable" style="width: 100%; font-size: 0.9rem;">
+              <thead>
+                <tr style="background-color: #f5f5f5;">
+                  <th style="text-align: center;">Task</th>
+                  <th style="text-align: center;">N<sub>cam</sub> (Config.)</th>
+                  <th style="text-align: center;">Slopes</th>
+                  <th style="text-align: center;">Stairs Up</th>
+                  <th style="text-align: center;">Stairs Down</th>
+                  <th style="text-align: center;">Stepping Stones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Bidirectional -->
+                <tr style="background-color: #f9f9f9;">
+                  <td rowspan="4" style="text-align: center; vertical-align: middle; font-weight: bold;">Bidirectional</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">Expert Level</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">6.0</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">6.0</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">6.0</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">6.0</td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">1 (Down)</td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>5.9</strong><span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                  <td style="text-align: center;">5.1<span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                </tr>
+                <tr style="background-color: #e8f4e8;">
+                  <td style="text-align: center;">2 (F + B)</td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                </tr>
+                <tr style="background-color: #e8f4e8;">
+                  <td style="text-align: center;">4 (F + B + L + R)</td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                </tr>
+                <!-- Omnidirectional -->
+                <tr style="background-color: #f9f9f9; border-top: 2px solid #ddd;">
+                  <td rowspan="4" style="text-align: center; vertical-align: middle; font-weight: bold;">Omnidirectional</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">Expert Level</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">6.0</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">6.0</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">6.0</td>
+                  <td style="text-align: center; font-style: italic; color: #888;">5.6</td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">1 (Down)</td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>5.9</strong><span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                  <td style="text-align: center;">3.0<span style="font-size: 0.8em; color: #666;">±0.2</span></td>
+                </tr>
+                <tr style="background-color: #e8f4e8;">
+                  <td style="text-align: center;">2 (F + B)</td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>5.9</strong><span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                  <td style="text-align: center;"><strong>4.5</strong><span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                </tr>
+                <tr style="background-color: #e8f4e8;">
+                  <td style="text-align: center;">4 (F + B + L + R)</td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.1</span></td>
+                  <td style="text-align: center;"><strong>6.0</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                  <td style="text-align: center;"><strong>4.6</strong><span style="font-size: 0.8em; color: #666;">±0.0</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="content" style="text-align: center; color: #888; font-size: 0.8rem; margin-top: 10px;">
+            Terrain levels↑ achieved under different numbers of depth cameras for bidirectional and omnidirectional locomotion.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
