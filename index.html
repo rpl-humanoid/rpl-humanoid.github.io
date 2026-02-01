@@ -346,13 +346,13 @@
         <div class="columns is-centered">
           <div class="column is-three-quarters" style="text-align: center;">
             <h3 class="title is-3" style="margin-bottom: 10px; font-size: x-large;"><span style="color: rgba(255, 102, 0, 0.9);">Bidirectional</span> Locomotion</h3>
-            <video class="hover-speedup" autoplay muted loop playsinline controls preload="auto" src="./static/videos/RPL/all_terrains_loco_forward_1.mp4" style="border-radius:10px; width:100%; max-width:1000px;"></video>
+            <video class="hover-speedup" autoplay muted loop playsinline controls preload="auto" src="./static/videos/RPL/all_terrains_loco_forward.mp4" style="border-radius:10px; width:100%; max-width:1000px;"></video>
           </div>
         </div>
         <div class="columns is-centered">
           <div class="column is-three-quarters" style="text-align: center;">
             <!-- <h3 class="title is-3" style="margin-bottom: 10px; font-size: x-large;">[XXX]</h3> -->
-            <video class="hover-speedup" autoplay muted loop playsinline controls preload="auto" src="./static/videos/RPL/all_terrains_loco_backward_1.mp4" style="border-radius:10px; width:100%; max-width:1000px;"></video>
+            <video class="hover-speedup" autoplay muted loop playsinline controls preload="auto" src="./static/videos/RPL/all_terrains_loco_backward.mp4" style="border-radius:10px; width:100%; max-width:1000px;"></video>
           </div>
         </div>
         <div class="columns is-centered">
@@ -397,6 +397,12 @@
           <p class="content" style="padding-bottom: 0px; color: #4a4a4a; font-size: 0.95rem;">
             We ablate two distillation components: <strong>RSM</strong> (Random Side Masking) and <strong>DFSV</strong> (Depth Feature Scaling Based on Velocity Commands) that are applied to <strong>RPL</strong>. Despite similar training loss, full <strong>RPL</strong> generalizes best to OOD settings—<strong>RSM</strong> is critical for unseen narrow terrain widths; <strong>DFSV</strong> handles asymmetric multi-view inputs (e.g., front camera on stairs, rear on stepping stones). Together they enable robust bidirectional stair locomotion under unseen geometry and asymmetric perception.
           </p>
+          <div class="columns is-centered">
+            <div class="column is-full" style="text-align: center;">
+              <h3 class="title is-3" style="margin-bottom: 10px; font-size: x-large;"><span>[XXX]</span></h3>
+              <video class="hover-speedup" autoplay muted loop playsinline controls preload="auto" src="./static/videos/RPL/rpl_sim_back_forth_all_terrains.mp4" style="border-radius:10px; width:100%; max-width:1200px;"></video>
+            </div>
+          </div>
           <div class="columns" style="margin: 0; align-items: flex-start;">
             <div class="column is-half" style="padding: 0 0.5rem; text-align: center;">
               <h3 class="title is-3" style="margin-bottom: 6px; font-size: x-large;">RPL</h3>
