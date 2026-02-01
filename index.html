@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="FALCON">
+  <meta name="keywords" content="Robotics, Quadruped, Whole-body Control, Whole-body Manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    FALCON
+  </title>
+
+  <!-- <link rel="apple-touch-icon" sizes="57x57"s
+    href="./static/images/cr7_frame5_crop.png" />
+
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png"
+    sizes="196x196" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png"
+    sizes="192x192" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png" sizes="128x128" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="./static/images/cr7_frame5_crop.png" sizes="16x16" />
+
+  <link rel="mask-icon" href="//www-media.stanford.edu/assets/favicon/safari-pinned-tab.svg" color="#ffffff">
+  <meta name="application-name" content="Stanford University" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="//www-media.stanford.edu/assets/favicon/mstile-144x144.png" />
+  <meta name="msapplication-square70x70logo" content="//www-media.stanford.edu/assets/favicon/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="//www-media.stanford.edu/assets/favicon/mstile-150x150.png" />
+  <meta name="msapplication-square310x310logo" content="//www-media.stanford.edu/assets/favicon/mstile-310x310.png" /> -->
+
+  <link rel="icon" href="./static/images/icon.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZ38WT2YPD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QZ38WT2YPD');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <!-- <script src="https://kit.fontawesome.com/19914a84eb.js" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <meta property="og:image" content="https://lecar-lab.github.io/falcon-humanoid/static/images/hero_static.gif" />
+  <meta property="og:image:secure" content="https://lecar-lab.github.io/falcon-humanoid/static/images/hero_static.gif" />
+</head>
+
+<section class="hero is-link is-fullheight video">
+  <div class="hero-video">
+    <video playsinline autoplay muted loop>
+      <source src="./static/videos/hero_static.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-video is-hidden-tablet is-inline-block-mobile"
+    style="height: 154.28571428vw; width: 100%; min-width:64.81481481vh;min-height:100%;">
+    <video playsinline autoplay muted loop>
+      <source src=" ./static/videos/hero_static.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="overlay"></div>
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head is-hidden-mobile">
+    <header class="navbar">
+      <div class="container is-size-5">
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item pl-4 pr-4" href="./static/falcon.pdf">  <!-- TODO:update -->
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/pdf.svg" alt="PDF" />
+              </span>
+              <span>Paper</span>
+            </a>
+            <a class="navbar-item  pl-4 pr-4" href="https://arxiv.org/abs/2505.06776">  <!-- TODO:update -->
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/arxiv.svg" alt="ArXiv" />
+              </span>
+              <span>arXiv</span> </a>
+            <a href="https://youtu.be/OfsvJ5-Fyzg" class="navbar-item  pl-4 pr-4"> <!-- TODO:update -->
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/youtube.svg" alt="Youtube" />
+              </span>
+              <span>Video</span> </a>
+            <span class="navbar-item  pl-4 pr-4">
+              <a href="https://github.com/LeCAR-Lab/FALCON/" class="button is-inverted is-large">  <!-- TODO:update -->
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+            </span>
+            <a class="navbar-item pl-4 pr-4" href="https://spectrum.ieee.org/video-friday-darpa-triage-challenge" target="_blank">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/spectrum.png" alt="IEEE Spectrum" />
+              </span>
+              <span>IEEE Spectrum</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 6rem;">
+        FALCON 🦅
+      </h1>
+      <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 4rem;">
+        Learning Force-Adaptive Humanoid Loco-Manipulation
+      </h1>
+      <h1 class="is-2 is-italic is-size-4-mobile" style="font-size: 2rem; opacity: 80%;">
+        Learning for Dynamics & Control (L4DC) 2026
+      </h1>
+      <!--  <h1 class="is-2 is-italic is-size-4-mobile" style="font-size: 1.5rem; opacity: 80%;">
+        <b>Spotlight</b> WCBM Workshop CoRL 2024
+      </h1>
+      <h1 class="is-2 is-italic is-size-4-mobile" style="font-size: 1.5rem; opacity: 80%;">
+        X-Embodiment Workshop CoRL 2024
+      </h1> -->
+      <div class="column has-text-centered is-hidden-tablet">
+        <div class="publication-links">
+          <!-- PDF Link. -->
+          <span class="link-block">
+            <a href="./static/falcon.pdf" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <img src="./static/images/pdf.svg" alt="PDF" />
+              </span>
+              <span>Paper</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://arxiv.org/abs/2505.06776" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <img src="./static/images/arxiv.svg" alt="ArXiv" />
+              </span>
+              <span>arXiv</span>
+            </a>
+          </span>
+          <!-- Video Link. -->
+          <span class="link-block">
+            <a href="https://youtu.be/OfsvJ5-Fyzg" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <img src="./static/images/youtube.svg" alt="Youtube" />
+              </span>
+              <span>Video</span>
+            </a>
+          </span>
+          <!-- Code Link. -->
+          <span class="link-block">
+            <a href="https://github.com/LeCAR-Lab/FALCON/"
+              class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>Code</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://spectrum.ieee.org/video-friday-darpa-triage-challenge" class="external-link button is-normal is-rounded is-dark" target="_blank">
+              <span class="icon">
+                <img src="./static/images/spectrum.png" alt="IEEE Spectrum" />
+              </span>
+              <span>IEEE Spectrum</span>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <!-- <div class="hero-foot is-hidden-mobile">
+    <nav class="tabs is-boxed is-fullwidth is-size-4">
+      <ul>
+        <li><a href="#agile-skills">Agile Whole-Body Skills</a></li>
+        <li><a href="#before-after-asap"></a>Before/After ASAP Fine-tuning</a></li>
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#method">Method</a></li>
+      </ul>
+    </nav>
+  </div> -->
+</section>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation</h1>
+
+          <!-- <div class="is-size-4 publication-authors">
+            <span class="author-block" style="font-size: 95%;">
+              <a href="https://tairanhe.com/">Tairan He</a>*&nbsp;&nbsp;
+              <a href="https://www.zhengyiluo.com/">Zhengyi Luo</a>*&nbsp;&nbsp;
+              <a href="https://xialin-he.github.io/">Xialin He</a>*&nbsp;&nbsp;
+              <a href="https://wenlixiao-cs.github.io/">Wenli Xiao</a>&nbsp;&nbsp;
+              <a href="https://zita-ch.github.io/">Chong Zhang</a>&nbsp;&nbsp;
+            </span>
+          </div>
+
+          <div class="is-size-4 publication-authors">
+            <span class="author-block" style="font-size: 95%;">
+              <a href="https://wnzhang.net/">Weinan Zhang</a>&nbsp;&nbsp;
+              <a href="https://kriskitani.github.io/">Kris Kitani</a>&nbsp;&nbsp;
+              <a href="https://www.cs.cmu.edu/~cliu6/">Changliu Liu</a>&nbsp;&nbsp;
+              <a href="https://www.gshi.me/">Guanya Shi</a>&nbsp;&nbsp;
+            </span>
+          </div> -->
+
+          <div class="is-size-4 publication-authors">
+            <span class="author-block" style="font-size: 95%;">
+              <a href="https://hang0610.github.io/">Yuanhang Zhang</a>&nbsp;&nbsp;
+              <a href="https://yifuyuan.github.io/">Yifu Yuan</a>&nbsp;&nbsp;
+              <a href="https://www.linkedin.com/in/prajwal-gurunath/">Prajwal Gurunath</a>&nbsp;&nbsp;
+              <a href="https://tairanhe.com/">Tairan He</a>&nbsp;&nbsp;
+              <a href="https://www.linkedin.com/in/guptaishita18/">Ishita Gupta</a>&nbsp;&nbsp;
+              <br>
+              <a href="https://www.linkedin.com/in/shayegan/">Shayegan Omidshafiei</a>&nbsp;&nbsp;
+              <a href="https://www.linkedin.com/in/ali-agha-7aa5212a/">Ali-akbar Agha-mohammadi</a>&nbsp;&nbsp;
+              <a href="https://mjvc.me/">Marcell Vazquez-Chanlatte</a>&nbsp;&nbsp;
+              <a href="https://www.linkedin.com/in/liam-pedersen-0713172/">Liam Pedersen</a>&nbsp;&nbsp;
+              <a href="https://www.gshi.me/">Guanya Shi</a>&nbsp;&nbsp;
+            </span>
+          </div>
+
+          <div class="column">
+            <image src="./static/images/ip.png" style="width: 60%;"></image>
+          </div>
+
+
+          <div class="is-size-4 publication-authors", style="margin-bottom: 0.5cm;">
+            L4DC 2026 <span style="color: red; font-weight: bold;">(Oral)</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <!-- TODO:update -->
+                <a href="./static/falcon.pdf"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                </a>
+              </span>
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <!-- TODO:update -->
+                <a href="https://arxiv.org/abs/2505.06776"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>ArXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <!-- TODO:update -->
+                <a href="https://youtu.be/OfsvJ5-Fyzg"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Datasets Link. -->
+              <!-- <span class="link-block">
+                <a href="https://cmu.box.com/s/kmayzq5ax2rxvwn97s0hzz0aq5vws9io" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Datasets</span>
+                </a>
+              </span> -->
+              <!-- twitter Link. -->
+              <span class="link-block">
+                <!-- TODO:update -->
+                <a href="https://x.com/Yuanhang__Zhang/status/1921942767682588897"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Summary</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <!-- TODO:update -->
+                <a href="https://github.com/LeCAR-Lab/FALCON/" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://spectrum.ieee.org/video-friday-darpa-triage-challenge" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                    <img src="./static/images/spectrum.png" alt="IEEE Spectrum" />
+                  </span>
+                  <span>IEEE Spectrum</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">
+          Heavy-Duty Loco-Manipulation Tasks via <em>Teleoperation</em>
+        </h2>
+        <p class="content is-medium" style="text-align: center; padding-bottom: 20px;">
+          We compare the real-world performance of <strong style="color: #13c253; font-weight: 800;">FALCON</strong> with a <strong style="color: #e63946; font-weight: 800;">baseline</strong> that uses <em>RL for low-body locomotion and IK for upper-body manipulation w/o any force curriculum</em>, on the following three tasks: <b>Door-Opening</b>, <b>Cart-Pulling</b>, and <b>Heavy-Lifting</b>.
+        </p>        
+        <tr>
+          <td>
+            <div class="columns"> 
+              <div class="column">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Cart-Pulling (Baseline)</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/t1_cart_pulling_baseline_mask_h264.mp4" width="100%" style="border-radius:10px; border: 5px solid rgb(255, 114, 112);"></video>
+              </div>
+              <div class="column">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Cart-Pulling (FALCON)</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/t1_cart_pulling_falcon_mask_h264.mp4" width="100%" style="border-radius:10px; border: 5px solid rgb(134, 236, 137);"></video>
+              </div>
+            </div>
+
+            <div class="columns">
+              <div class="column" style="text-align: center;">
+                <h3 class="title is-3" style="margin-bottom: 10px; font-size: x-large;">Door-Opening (Baseline)</h3>
+                <video autoplay muted loop playsinline controls preload="auto"
+                      src="./static/videos/g1_door_opening_baseline_unmask.mp4"
+                      width="70%"
+                      style="border-radius:10px; border: 5px solid rgb(255, 114, 112);">
+                </video>
+              </div>
+              <div class="column" style="text-align: center;">
+                <h3 class="title is-3" style="margin-bottom: 10px; font-size: x-large;">Door-Opening (FALCON)</h3>
+                <video autoplay muted loop playsinline controls preload="auto"
+                      src="./static/videos/g1_door_opening_falcon_unmask.mp4"
+                      width="70%"
+                      style="border-radius:10px; border: 5px solid rgb(134, 236, 137);">
+                </video>
+              </div>
+            </div>
+            <br>
+
+            <div class="columns"> 
+              <div class="column">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Heavy-Lifting (Baseline)</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/heavy_lifting_baseline_mask_h264.mp4" width="100%" style="border-radius:10px; border: 5px solid rgb(255, 114, 112);"></video>
+              </div>
+              <div class="column">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Heavy-Lifting (FALCON)</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/heavy_lifting_falcon_mask_h264.mp4" width="100%" style="border-radius:10px; border: 5px solid rgb(134, 236, 137);"></video>
+              </div>
+            </div>
+
+
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">
+          <em>Autonomous</em> Long-Horizon Forceful Loco-Manipulation Task
+        </h2>      
+        <tr>
+          <td>
+
+            <div class="columns"> <!-- Correct Bulma structure -->
+              <div class="column has-text-centered">
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/autonomy_unmask.mov" width="100%" style="border-radius:10px;"></video>
+              </div>
+
+            </div>
+            <br>
+
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">
+          More Forceful Loco-Manipulation Tasks via <em>Teleoperation</em>
+        </h2>
+        <tr>
+          <td>
+
+            <!-- <div class="columns">
+              <div class="column has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Door-Opening</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/door_opening_fieldai_unmask.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div> -->
+
+            <div class="columns"> <!-- Correct Bulma structure -->
+              <div class="column">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Cart-Pulling (Unitree G1)</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/g1_cart_pulling_unmask_h264.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Cart-Pulling (Booster T1)</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/t1_cart_pulling_praj_unmask_h264.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+            <br>
+
+
+            <div class="columns"> <!-- Correct Bulma structure -->
+              <div class="column has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Heavy-Lifting</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/heavy_lifting_mask_h264.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Adaptive Heavy-Lifting</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/adaptive_heavy_lifting_unmask.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+            <br>
+
+
+            <div class="columns"> <!-- Correct Bulma structure -->
+              <div class="column">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Payloads-Transporting</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/handover_unmask.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Stance-Pulling</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/stance_pulling_h264.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+            <br>
+
+
+            <div class="columns"> <!-- Correct Bulma structure -->
+              <div class="column has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Tug-of-War: Round 1</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/tugofwar_1_h264.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column has-text-centered">
+                <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Tug-of-War: Round 2</h3>
+                <video autoplay muted loop playsinline controls preload="auto" src="./static/videos/tugofwar_2_h264.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+            <br>
+
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <h2 class="title is-2">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Humanoid loco-manipulation holds transformative potential for daily service and industrial tasks, yet achieving precise, robust whole-body control with 3D end-effector force interaction remains a major challenge. Prior approaches are often limited to lightweight tasks or quadrupedal/wheeled platforms. To overcome these limitations, we propose <span class="method" style="color: darkred;">FALCON</span>, a dual-agent reinforcement-learning-based framework for robust force-adaptive humanoid loco-manipulation. <span class="method" style="color: darkred;">FALCON</span> decomposes whole-body control into two specialized agents: (1) a lower-body agent ensuring stable locomotion under external force disturbances, and (2) an upper-body agent precisely tracking end-effector positions with implicit adaptive force compensation. These two agents are jointly trained in simulation with a force curriculum that progressively escalates the magnitude of external force exerted on the end effector while respecting torque limits. Experiments demonstrate that, compared to the baselines, <span class="method" style="color: darkred;">FALCON</span> achieves 2$\times$ more accurate upper-body joint tracking, while maintaining robust locomotion under force disturbances and achieving faster training convergence. Moreover, <span class="method" style="color: darkred;">FALCON</span> enables policy training without embodiment-specific reward or curriculum tuning. Using the same training setup, we obtain policies that are deployed across multiple humanoids, enabling forceful loco-manipulation tasks such as transporting payloads (0-20N force), cart-pulling (0-100N), and door-opening (0-40N) in the real world.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <h2 class="title is-2" style="text-align: center;">Method</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <div class="content has-text-justified">
+          <p>
+            <span class="method" style="color: darkred;">FALCON</span> is a dual-agent reinforcement learning framework that decouples locomotion and manipulation with separate rewards for efficient training. During learning, a torque-limit-aware 3D force curriculum applies progressively stronger external forces to the end-effectors, maximizing force adaptivity while ensuring safety. <span class="method" style="color: darkred;">FALCON</span> can be seamlessly trained and deployed on different humanoid robots without embodiment-specific reward or curriculum tuning, showing its cross-platform generalization capability.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <h2 class="title is-4" style="text-align: center;">Training Framework</h2> -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-thirds">
+        <div class="content has-text-justified">
+          <!-- <ol type="a">
+            There are two steps within the <span class="method" style="color: darkred;">FALCON</span> framework:
+              <ol>
+                <li><strong>Two-Agent Joint Training with Whole-Body Proprioception</strong>:  <br>Two agents, each assigned distinct sub-tasks, are jointly trained using shared whole-body proprioception signals. During training, randomized 3D external forces—bounded by the upper-body joint torque limits—are applied to the end-effectors to encourage robust coordination;</li>
+                <li><strong>External Disturbance Handling via Force Perturbation</strong><br> The agents learn to maintain task performance under force perturbations, developing complementary behaviors to counteract disturbances and achieve stable loco-manipulation.</li>
+              </ol> -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="columns is-centered">
+      <div class="column is-four-fifth has-text-centered">
+        <img src="./static/images/FALCON-Pipeline.png" alt="" style="width: 90%;" />
+      </div>
+    </div>
+
+
+
+
+    <section class="section" id="BibTeX">
+      <div class="container content">
+        <h2 class="titile">BibTeX</h2>
+        <pre><code>@article{zhang2025falcon,
+          title={FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation},
+          author={Zhang, Yuanhang and Yuan, Yifu and Gurunath, Prajwal and Gupta, Ishita and Omidshafiei, Shayegan and Agha-mohammadi, Ali-akbar and Vazquez-Chanlatte, Marcell and Pedersen, Liam and He, Tairan and Shi, Guanya},
+          journal={arXiv preprint arXiv:2505.06776},
+          year={2025}
+        }</code></pre>
+      </div>
+    </section>
+
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>Page template borrowed from <a href="https://nerfies.github.io/"><span class="dnerf">Nerfies</span></a> and <a href="https://umi-on-legs.github.io"><span class="dnerf">UMI-On-Legs</span></a>.</p>
+        </div>
+      </div>
+    </footer>
+
+</body>
+
+</html>
