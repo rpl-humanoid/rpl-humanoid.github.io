@@ -1,19 +1,19 @@
-// Speed up video on hover
+// Default 2x speed, normal speed on hover
 document.addEventListener('DOMContentLoaded', function() {
   const hoverVideos = document.querySelectorAll('.hover-speedup');
   
   hoverVideos.forEach(video => {
-    // Store original playback rate
-    const originalRate = video.playbackRate || 1.0;
+    // Set default playback rate to 2x
+    video.playbackRate = 2.0;
     
-    // Speed up on mouse enter
+    // Slow down to normal speed on mouse enter
     video.addEventListener('mouseenter', function() {
-      this.playbackRate = 2.0;
+      this.playbackRate = 1.0;
     });
     
-    // Return to normal speed on mouse leave
+    // Return to 2x speed on mouse leave
     video.addEventListener('mouseleave', function() {
-      this.playbackRate = originalRate;
+      this.playbackRate = 2.0;
     });
   });
 });
